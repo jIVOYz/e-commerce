@@ -1,4 +1,8 @@
 import { defineStyleConfig, extendTheme } from "@chakra-ui/react"
+import "@fontsource/roboto/300.css"
+import "@fontsource/roboto/400.css"
+import "@fontsource/roboto/500.css"
+import "@fontsource/roboto/700.css"
 
 const Button = defineStyleConfig({
   sizes: {
@@ -33,6 +37,12 @@ const Button = defineStyleConfig({
       bgColor: "neutral.800",
       color: "#fff",
     },
+
+    transparent: {
+      bg: "transparent",
+      color: "#000",
+      _hover: { bg: "transparent" },
+    },
   },
 
   baseStyle: {
@@ -66,7 +76,19 @@ const Heading = defineStyleConfig({
   },
 })
 
+const Input = defineStyleConfig({
+  variants: {
+    base: {
+      bg: "neutral.100",
+      borderRadius: 4,
+    },
+  },
+})
+
 export const theme = extendTheme({
+  fonts: {
+    body: "Roboto, sans-serif",
+  },
   colors: {
     brand: {
       1: "#03C988",
@@ -91,5 +113,6 @@ export const theme = extendTheme({
   components: {
     Button,
     Heading,
+    Input,
   },
 })

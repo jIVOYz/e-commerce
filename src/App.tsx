@@ -1,25 +1,20 @@
-import { Button, Flex, Heading } from "@chakra-ui/react"
-import ProductCard from "./components/UI/ProductCard"
+import { Route, Routes } from "react-router-dom"
+import Layout from "./Layout"
+import CategoryPage from "./pages/CategoryPage"
+import Home from "./pages/Home"
+import ProductPage from "./pages/ProductPage"
+import Cart from "./pages/Cart"
 
 function App() {
   return (
-    <>
-      <h1>Hello World!</h1>
-      <Button variant='base' size='md'>
-        Buy
-      </Button>
-      <Heading># Title 1</Heading>
-
-      <Flex gap={6}>
-        <ProductCard
-          title='Title'
-          ratingCount={120}
-          ratingStars={4}
-          img='https://newtime.ua/upload/2023-09/uKF2cKKv5mj39Fr.webp'
-          price={119.99}
-        />
-      </Flex>
-    </>
+    <Routes>
+      <Route element={<Layout />} path='/'>
+        <Route element={<Home />} path='/' />
+        <Route element={<CategoryPage />} path='/category/:categoryName' />
+        <Route element={<ProductPage />} path='/:productId' />
+        <Route element={<Cart />} path='/cart' />
+      </Route>
+    </Routes>
   )
 }
 
