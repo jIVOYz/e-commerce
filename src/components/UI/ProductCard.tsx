@@ -25,13 +25,13 @@ const ProductCard = ({ product }: ProductProps) => {
     <Card height='350px' width={{ base: "150px", sm: "200px", lg: "250px" }}>
       <CardBody display='flex' flexDirection='column' justifyContent='space-between'>
         <Link to={`/${product.id}`}>
-          <Box overflow='hidden' maxWidth='100%' maxHeight='180px'>
-            <Image width='100%' height='100%' objectFit='contain' src={product.image} />
+          <Box overflow='hidden' height='180px'>
+            <Image loading="lazy" width='100%' height='100%' objectFit='contain' src={product.image} />
           </Box>
         </Link>
         <Box display='flex' flexDirection='column'>
           <Link to={`/${product.id}`}>
-            <Text p={0}>{product.title.substr(0, 36)}</Text>
+            <Text p={0}>{product.title.substring(0, 36)}</Text>
           </Link>
           <Flex alignItems='center' gap='4px'>
             {stars}

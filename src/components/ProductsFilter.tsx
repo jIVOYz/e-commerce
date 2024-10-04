@@ -1,7 +1,7 @@
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react"
 
 interface Props {
-  setSortBy: Function
+  setSortBy: (value: string) => void
   sortBy: string
 }
 

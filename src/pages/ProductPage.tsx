@@ -30,7 +30,7 @@ const ProductPage = () => {
   }
 
   const stars: JSX.Element[] = []
-  for (let i = 1; i <= Math.round(product?.rating.rate!); i++) {
+  for (let i = 1; i <= Math.round(product?.rating.rate ?? 0); i++) {
     stars.push(<FaStar key={i} size='1.5rem' color='orange' />)
   }
 
