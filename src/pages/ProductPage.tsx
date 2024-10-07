@@ -2,7 +2,7 @@ import { Box, Button, Container, Flex, Image, Text, useMediaQuery } from "@chakr
 import { FaStar } from "react-icons/fa6"
 import { useAppDispatch, useAppSelector } from "../hook"
 import { useEffect } from "react"
-import { fetchProductsByCategory, getSingleProduct } from "../store/productSlice"
+import { getSingleProduct } from "../store/productSlice"
 import { useParams } from "react-router-dom"
 import { addProductToCart } from "../store/cartSlice"
 
@@ -15,15 +15,6 @@ const ProductPage = () => {
   useEffect(() => {
     dispatch(getSingleProduct(productId))
   }, [dispatch])
-
-  useEffect(() => {
-    dispatch(
-      fetchProductsByCategory({
-        limit: 4,
-        categoryName: product!.category,
-      })
-    )
-  }, [product])
 
   function addToCart() {
     dispatch(addProductToCart(product))
