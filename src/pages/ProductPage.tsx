@@ -20,7 +20,7 @@ const ProductPage = () => {
     dispatch(
       fetchProductsByCategory({
         limit: 4,
-        categoryName: product?.category,
+        categoryName: product!.category,
       })
     )
   }, [product])

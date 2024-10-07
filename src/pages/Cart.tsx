@@ -21,7 +21,6 @@ const Cart = () => {
   const dispatch = useAppDispatch()
   const cart = useAppSelector(state => state.cart.cart)
   const { products } = cart
-  console.log(cart)
 
   return (
     <Container maxW='1140px'>
@@ -47,7 +46,7 @@ const Cart = () => {
                   </Td>
                   <Td>
                     <Link to={`/${item.product.id}`}>
-                      <Text>{item.product.title.substr(0, 48)}</Text>
+                      <Text>{item.product.title.substring(0, 48)}</Text>
                     </Link>
                   </Td>
                   <Td>

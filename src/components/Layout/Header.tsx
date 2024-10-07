@@ -1,11 +1,9 @@
-import { HamburgerIcon, Search2Icon } from "@chakra-ui/icons"
+import { HamburgerIcon } from "@chakra-ui/icons"
 import {
   Box,
   Button,
   Container,
   Input,
-  InputGroup,
-  InputRightElement,
   Menu,
   MenuButton,
   MenuItem,
@@ -20,10 +18,12 @@ import { useAppDispatch, useAppSelector } from "../../hook"
 import { fetchCategories } from "../../store/categorySlice"
 import MobileMenu from "./MobileMenu"
 import { fetchProductsByCategory } from "../../store/productSlice"
+import { filterProducts, setQuery } from "../../store/searchProductSlice"
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const [selectedCategory, setSelectedCategory] = useState<string>("")
+  // const [searchInput, setSearchInput] = useState<string>("")
   const screenWidth = window.innerWidth
   const dispatch = useAppDispatch()
 
@@ -35,12 +35,21 @@ const Header = () => {
     dispatch(
       fetchProductsByCategory({
         categoryName: selectedCategory,
+        limit: 0,
+        sort: "asc"
       })
     )
   }, [selectedCategory])
 
+  function handleSearch(e: React.ChangeEvent<HTMLInputElement>) {
+    dispatch(setQuery(e.target.value))
+    dispatch(filterProducts())
+  }
+
   const categories = useAppSelector(state => state.categories.categories)
   const cart = useAppSelector(state => state.cart.cart)
+  const query = useAppSelector(state => state.searchProducts.query)
+
   return (
     <>
       <Box h='80px' bg='dark.1'>
@@ -67,14 +76,7 @@ const Header = () => {
             </Menu>
           )}
 
-          <InputGroup display='flex'>
-            <Input placeholder='Search' variant='base' />
-            <InputRightElement>
-              <Button variant='base' borderRadius='0 4px 4px 0' px={0}>
-                <Search2Icon />
-              </Button>
-            </InputRightElement>
-          </InputGroup>
+          <Input placeholder='Search' value={query} onChange={handleSearch} variant='base' />
 
           <Button position='relative' variant='transparent' px={0}>
             {cart.products.length > 0 && (
